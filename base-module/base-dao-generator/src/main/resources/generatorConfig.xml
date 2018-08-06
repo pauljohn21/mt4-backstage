@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE generatorConfiguration
+		PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"
+		"http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
+
+<generatorConfiguration>
+	<context id="MysqlContext" targetRuntime="MyBatis3" defaultModelType="flat">
+		<property name="beginningDelimiter" value="`"/>
+		<property name="endingDelimiter" value="`"/>
+
+		<plugin type="tk.mybatis.mapper.generator.MapperPlugin">
+			<property name="mappers" value="com.test.MyMapper"/>
+		</plugin>
+
+		<jdbcConnection driverClass="com.mysql.jdbc.Driver"
+						connectionURL="jdbc:mysql://www.kajie88.com:3306/myTest"
+						userId="root"
+						password="123">
+		</jdbcConnection>
+
+		<!-- 对于生成的pojo所在包 -->
+		<javaModelGenerator targetPackage="com.kajie88.base.po" targetProject="base-module/base-po/src/main/java"/>
+
+		<!-- 对于生成的mapper所在目录 -->
+		<sqlMapGenerator targetPackage="com.kajie88.base.mapper" targetProject="base-module/base-bao/src/main/resources"/>
+
+		<!-- 配置mapper对应的java映射 -->
+		<javaClientGenerator targetPackage="com.kajie88.base.dao" targetProject="base-module/base-bao/src/main/java"
+							 type="XMLMAPPER"/>
+
+
+		<table tableName="tbl_user" domainObjectName="User">
+		</table>
+		<table tableName="tbl_grade" domainObjectName="Grade">
+		</table>
+	</context>
+</generatorConfiguration>
