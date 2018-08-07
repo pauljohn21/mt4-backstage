@@ -1,13 +1,9 @@
 package com.kajie88.bootexplore.controller;
 
 import com.kajie88.bootexplore.learntest.LearnTest;
-import com.kajie88.user.domain.UserDomain;
-import com.kajie88.user.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-
-import java.util.List;
 
 /**
  * Created by IntelliJ IDEA.
@@ -26,7 +22,6 @@ public class TestController {
 
     @RequestMapping("showParam")
     public Object testInter(){
-
         return "111";
     }
 }

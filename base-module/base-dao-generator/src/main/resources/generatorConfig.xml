@@ -13,7 +13,7 @@
 		</plugin>
 
 		<jdbcConnection driverClass="com.mysql.jdbc.Driver"
-						connectionURL="jdbc:mysql://www.kajie88.com:3306/myTest"
+						connectionURL="jdbc:mysql://www.kajie88.com:3306/mt4_money_master"
 						userId="root"
 						password="123">
 		</jdbcConnection>
@@ -29,9 +29,13 @@
 							 type="XMLMAPPER"/>
 
 
-		<table tableName="tbl_user" domainObjectName="User">
+		<table tableName="t_admin" domainObjectName="Admin">
 		</table>
-		<table tableName="tbl_grade" domainObjectName="Grade">
+		<table tableName="t_dictionary" domainObjectName="PlatformDictionary">
+		</table>
+		<table tableName="t_file" domainObjectName="PlatformFile">
+		</table>
+		<table tableName="t_user_info" domainObjectName="UserInfo">
 		</table>
 	</context>
 </generatorConfiguration>
