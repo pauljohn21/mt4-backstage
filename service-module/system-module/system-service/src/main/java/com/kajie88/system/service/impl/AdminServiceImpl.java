@@ -9,6 +9,7 @@ import com.kajie88.base.po.Admin;
 import com.kajie88.base.utils.CollectionUtils;
 import com.kajie88.base.utils.StringUtil;
 import com.kajie88.base.po.AdminExample;
+import com.kajie88.base.utils.UUIDUtil;
 import com.kajie88.system.domain.AdminDomain;
 import com.kajie88.system.service.AdminService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -33,6 +34,12 @@ public class AdminServiceImpl implements AdminService {
         AdminExample.Criteria criteria = example.createCriteria();
         if (!StringUtil.isEmptyForTrim(domain.getId())) {
             criteria.andIdEqualTo(domain.getId());
+        }
+        if (!StringUtil.isEmptyForTrim(domain.getName())) {
+            criteria.andNameEqualTo(domain.getName());
+        }
+        if (!StringUtil.isEmptyForTrim(domain.getPwd())) {
+            criteria.andPwdEqualTo(domain.getPwd());
         }
         //3.第三步，开始进行db查询
         //封装到Domain中的pageInfo对象中，且进行实际的sql查询
@@ -75,6 +82,32 @@ public class AdminServiceImpl implements AdminService {
     @Override
     public void updateDomainById(AdminDomain domain) {
         mapper.updateByPrimaryKeySelective(domain);
+    }
+
+    @Override
+    public AdminDomain login(String name, String pwd) {
+        if(StringUtil.isEmptyForTrim(name)){
+            throw new CommonException(CommonError.SYSTEM_ERROR,"用户名不能为空");
+        }
+        if(StringUtil.isEmptyForTrim(pwd)){
+            throw new CommonException(CommonError.SYSTEM_ERROR,"密码不能为空");
+        }
+        AdminDomain checkAdmin = new AdminDomain();
+        checkAdmin.setName(name);
+        checkAdmin.setPwd(pwd);
+        AdminDomain result = this.getDomainByQuery(checkAdmin);
+        if(result==null){
+            throw new CommonException(CommonError.SYSTEM_ERROR,"用户名或密码不正确");
+        }
+        checkAdmin.setId(result.getId());
+        checkAdmin.setName(null);
+        checkAdmin.setPwd(null);
+        String newToken = UUIDUtil.createUUID();
+        checkAdmin.setToken(newToken);
+        this.updateDomainById(checkAdmin);
+
+        result.setToken(newToken);
+        return result;
     }
 
 

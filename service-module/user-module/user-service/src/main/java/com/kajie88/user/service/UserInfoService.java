@@ -42,5 +42,5 @@ public interface UserInfoService {
      * 删除一条信息
      * @param id
      */
-    void deleteDomian(String id);
+    void deleteDomian(int id);
 }

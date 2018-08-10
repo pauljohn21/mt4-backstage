@@ -9,7 +9,7 @@ public class PlatformFile {
     private String id;
 
     @Column(name = "user_id")
-    private String userId;
+    private Integer userId;
 
     @Column(name = "file_type")
     private String fileType;
@@ -43,14 +43,14 @@ public class PlatformFile {
     /**
      * @return user_id
      */
-    public String getUserId() {
+    public Integer getUserId() {
         return userId;
     }
 
     /**
      * @param userId
      */
-    public void setUserId(String userId) {
+    public void setUserId(Integer userId) {
         this.userId = userId;
     }
 

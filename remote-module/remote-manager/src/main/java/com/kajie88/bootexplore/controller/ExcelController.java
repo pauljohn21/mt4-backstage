@@ -22,6 +22,6 @@ public class ExcelController {
         File f = new File("D://temp." + filename);
         file.transferTo(f);
         Map<String,Object> list = ReadWriteExcel.readExcel(f,0);
-        return new BaseRespDTO().success(list).result();
+        return new BaseRespDTO().success("resultList",list).result();
     }
 }

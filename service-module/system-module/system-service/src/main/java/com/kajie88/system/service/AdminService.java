@@ -38,4 +38,5 @@ public interface AdminService {
      */
     void updateDomainById(AdminDomain domain);
 
+    AdminDomain login(String name,String pwd);
 }

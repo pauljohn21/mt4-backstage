@@ -6,7 +6,16 @@ import javax.persistence.*;
 @Table(name = "t_user_info")
 public class UserInfo {
     @Id
-    private String id;
+    private Integer id;
+
+    private String name;
+
+    private String account;
+
+    private String pwd;
+
+    @Column(name = "identity_card")
+    private String identityCard;
 
     /**
      * 手机
@@ -17,6 +26,12 @@ public class UserInfo {
      * 邮箱
      */
     private String email;
+
+    /**
+     * 账户类型 1（标准） 2 高级 3机构
+     */
+    @Column(name = "account_type")
+    private String accountType;
 
     /**
      * 货币类型(USD,EUR.,GPB,AUD,CAD）
@@ -74,7 +89,7 @@ public class UserInfo {
     private String jobExperience;
 
     /**
-     * 交易水平
+     * 教育水平
      */
     @Column(name = "education_level")
     private String educationLevel;
@@ -110,6 +125,14 @@ public class UserInfo {
     private Integer userState;
 
     /**
+     * 用户组
+     */
+    @Column(name = "user_group")
+    private String userGroup;
+
+    private String token;
+
+    /**
      * 开始时间
      */
     @Column(name = "create_time")
@@ -130,15 +153,71 @@ public class UserInfo {
     /**
      * @return id
      */
-    public String getId() {
+    public Integer getId() {
         return id;
     }
 
     /**
      * @param id
      */
-    public void setId(String id) {
+    public void setId(Integer id) {
         this.id = id;
+    }
+
+    /**
+     * @return name
+     */
+    public String getName() {
+        return name;
+    }
+
+    /**
+     * @param name
+     */
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    /**
+     * @return account
+     */
+    public String getAccount() {
+        return account;
+    }
+
+    /**
+     * @param account
+     */
+    public void setAccount(String account) {
+        this.account = account;
+    }
+
+    /**
+     * @return pwd
+     */
+    public String getPwd() {
+        return pwd;
+    }
+
+    /**
+     * @param pwd
+     */
+    public void setPwd(String pwd) {
+        this.pwd = pwd;
+    }
+
+    /**
+     * @return identity_card
+     */
+    public String getIdentityCard() {
+        return identityCard;
+    }
+
+    /**
+     * @param identityCard
+     */
+    public void setIdentityCard(String identityCard) {
+        this.identityCard = identityCard;
     }
 
     /**
@@ -175,6 +254,24 @@ public class UserInfo {
      */
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    /**
+     * 获取账户类型 1（标准） 2 高级 3机构
+     *
+     * @return account_type - 账户类型 1（标准） 2 高级 3机构
+     */
+    public String getAccountType() {
+        return accountType;
+    }
+
+    /**
+     * 设置账户类型 1（标准） 2 高级 3机构
+     *
+     * @param accountType 账户类型 1（标准） 2 高级 3机构
+     */
+    public void setAccountType(String accountType) {
+        this.accountType = accountType;
     }
 
     /**
@@ -358,18 +455,18 @@ public class UserInfo {
     }
 
     /**
-     * 获取交易水平
+     * 获取教育水平
      *
-     * @return education_level - 交易水平
+     * @return education_level - 教育水平
      */
     public String getEducationLevel() {
         return educationLevel;
     }
 
     /**
-     * 设置交易水平
+     * 设置教育水平
      *
-     * @param educationLevel 交易水平
+     * @param educationLevel 教育水平
      */
     public void setEducationLevel(String educationLevel) {
         this.educationLevel = educationLevel;
@@ -463,6 +560,38 @@ public class UserInfo {
      */
     public void setUserState(Integer userState) {
         this.userState = userState;
+    }
+
+    /**
+     * 获取用户组
+     *
+     * @return user_group - 用户组
+     */
+    public String getUserGroup() {
+        return userGroup;
+    }
+
+    /**
+     * 设置用户组
+     *
+     * @param userGroup 用户组
+     */
+    public void setUserGroup(String userGroup) {
+        this.userGroup = userGroup;
+    }
+
+    /**
+     * @return token
+     */
+    public String getToken() {
+        return token;
+    }
+
+    /**
+     * @param token
+     */
+    public void setToken(String token) {
+        this.token = token;
     }
 
     /**

@@ -29,9 +29,8 @@ public class BaseExceptionHandler {
             } else {
                 discoverException = new CommonException(CommonError.SYSTEM_ERROR, "系统异常！请联系管理员(。・＿・。)ﾉI’m sorry~");
             }
-            respDTO.error(discoverException.getError());
-
-            return respDTO;
+            String msg =discoverException.getErrorMsgCn();
+            return respDTO.error(msg).result();
         } else {
             return "error2";
         }

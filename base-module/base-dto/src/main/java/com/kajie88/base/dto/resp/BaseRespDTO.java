@@ -14,7 +14,7 @@ import java.util.Map;
  */
 public class BaseRespDTO {
     private Map<String,Object> map = new HashMap<>();
-//    private PageInfo page = new PageInfo();
+    //    private PageInfo page = new PageInfo();
 
     public BaseRespDTO(){
         map.put("respStatus","");
@@ -22,19 +22,22 @@ public class BaseRespDTO {
         map.put("errorMsg","");
         map.put("errorMsgCn","");
         map.put("errorTitle","");
+        map.put("data", new HashMap<String,Object>());
     }
     public BaseRespDTO success(){
         map.put("respStatus",ResponseStatus.SUCCESS);
         return this;
     }
-    public BaseRespDTO success(Object data){
+    public BaseRespDTO success(String key , Object data){
         map.put("respStatus",ResponseStatus.SUCCESS);
-        map.put("data",data);
+        Map<String,Object> respData =(Map<String,Object>)map.get("data");
+        respData.put(key,data);
         return this;
     }
-    public BaseRespDTO success(Object data, PageInfo pageInfo){
+    public BaseRespDTO success(String key , Object data, PageInfo pageInfo){
         map.put("respStatus",ResponseStatus.SUCCESS);
-        map.put("data",data);
+        Map<String,Object> respData =(Map<String,Object>)map.get("data");
+        respData.put(key,data);
         map.put("page",pageInfo);
         return this;
     }

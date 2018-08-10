@@ -35,8 +35,19 @@ public class UserInfoServiceImpl implements UserInfoService {
         UserInfoExample example = new UserInfoExample();
         //2.2 把字段参数带入
         UserInfoExample.Criteria criteria = example.createCriteria();
-        if (!StringUtil.isEmptyForTrim(domain.getId())) {
+        if (domain.getId()!=null) {
             criteria.andIdEqualTo(domain.getId());
+        }
+        if(!StringUtil.isEmptyForTrim(domain.getName())){
+            criteria.andNameLike("%"+domain.getName()+"%");
+        }
+        if (domain.getCreateTimeSortType() != null) {
+            example.setOrderByClause("create_time " + domain.getCreateTimeSortType());
+        }
+        if(domain.getDelFlag()==null){
+            criteria.andDelFlagEqualTo(0);
+        }else {
+            criteria.andDelFlagEqualTo(domain.getDelFlag());
         }
         //3.第三步，开始进行db查询
         //封装到Domain中的pageInfo对象中，且进行实际的sql查询
@@ -71,7 +82,6 @@ public class UserInfoServiceImpl implements UserInfoService {
     @Override
     public String insertDomain(UserInfoDomain domain) {
         String newUserId = String.join("",UUID.randomUUID().toString().split("-"));
-        domain.setId(newUserId);
         domain.setCreateTime(new Date());
         mapper.insertSelective(domain);
         return newUserId;
@@ -83,7 +93,7 @@ public class UserInfoServiceImpl implements UserInfoService {
     }
 
     @Override
-    public void deleteDomian(String id) {
+    public void deleteDomian(int id) {
         UserInfoDomain delInfo = new UserInfoDomain();
         delInfo.setId(id);
         delInfo.setDelFlag(1);

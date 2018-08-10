@@ -5,9 +5,14 @@
     <!--
       WARNING - @mbg.generated
     -->
-    <id column="id" property="id" jdbcType="VARCHAR" />
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="name" property="name" jdbcType="VARCHAR" />
+    <result column="account" property="account" jdbcType="VARCHAR" />
+    <result column="pwd" property="pwd" jdbcType="VARCHAR" />
+    <result column="identity_card" property="identityCard" jdbcType="VARCHAR" />
     <result column="phone" property="phone" jdbcType="VARCHAR" />
     <result column="email" property="email" jdbcType="VARCHAR" />
+    <result column="account_type" property="accountType" jdbcType="VARCHAR" />
     <result column="money_type" property="moneyType" jdbcType="VARCHAR" />
     <result column="leverage" property="leverage" jdbcType="INTEGER" />
     <result column="advance_depost" property="advanceDepost" jdbcType="DOUBLE" />
@@ -24,6 +29,8 @@
     <result column="money_resource" property="moneyResource" jdbcType="VARCHAR" />
     <result column="risk_awareness" property="riskAwareness" jdbcType="VARCHAR" />
     <result column="user_state" property="userState" jdbcType="INTEGER" />
+    <result column="user_group" property="userGroup" jdbcType="VARCHAR" />
+    <result column="token" property="token" jdbcType="VARCHAR" />
     <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
     <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
     <result column="del_flag" property="delFlag" jdbcType="INTEGER" />
@@ -96,10 +103,10 @@
     <!--
       WARNING - @mbg.generated
     -->
-    id, phone, email, money_type, leverage, advance_depost, residential_country, address, 
-    postcode, city, birthday, job_state, job_experience, education_level, annual_income, 
-    sum_money, money_resource, risk_awareness, user_state, create_time, update_time, 
-    del_flag
+    id, name, account, pwd, identity_card, phone, email, account_type, money_type, leverage, 
+    advance_depost, residential_country, address, postcode, city, birthday, job_state, 
+    job_experience, education_level, annual_income, sum_money, money_resource, risk_awareness, 
+    user_state, user_group, token, create_time, update_time, del_flag
   </sql>
   <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.kajie88.base.po.UserInfoExample" >
     <!--
@@ -143,13 +150,28 @@
     update t_user_info
     <set >
       <if test="record.id != null" >
-        id = #{record.id,jdbcType=VARCHAR},
+        id = #{record.id,jdbcType=INTEGER},
+      </if>
+      <if test="record.name != null" >
+        name = #{record.name,jdbcType=VARCHAR},
+      </if>
+      <if test="record.account != null" >
+        account = #{record.account,jdbcType=VARCHAR},
+      </if>
+      <if test="record.pwd != null" >
+        pwd = #{record.pwd,jdbcType=VARCHAR},
+      </if>
+      <if test="record.identityCard != null" >
+        identity_card = #{record.identityCard,jdbcType=VARCHAR},
       </if>
       <if test="record.phone != null" >
         phone = #{record.phone,jdbcType=VARCHAR},
       </if>
       <if test="record.email != null" >
         email = #{record.email,jdbcType=VARCHAR},
+      </if>
+      <if test="record.accountType != null" >
+        account_type = #{record.accountType,jdbcType=VARCHAR},
       </if>
       <if test="record.moneyType != null" >
         money_type = #{record.moneyType,jdbcType=VARCHAR},
@@ -199,6 +221,12 @@
       <if test="record.userState != null" >
         user_state = #{record.userState,jdbcType=INTEGER},
       </if>
+      <if test="record.userGroup != null" >
+        user_group = #{record.userGroup,jdbcType=VARCHAR},
+      </if>
+      <if test="record.token != null" >
+        token = #{record.token,jdbcType=VARCHAR},
+      </if>
       <if test="record.createTime != null" >
         create_time = #{record.createTime,jdbcType=TIMESTAMP},
       </if>
@@ -218,9 +246,14 @@
       WARNING - @mbg.generated
     -->
     update t_user_info
-    set id = #{record.id,jdbcType=VARCHAR},
+    set id = #{record.id,jdbcType=INTEGER},
+      name = #{record.name,jdbcType=VARCHAR},
+      account = #{record.account,jdbcType=VARCHAR},
+      pwd = #{record.pwd,jdbcType=VARCHAR},
+      identity_card = #{record.identityCard,jdbcType=VARCHAR},
       phone = #{record.phone,jdbcType=VARCHAR},
       email = #{record.email,jdbcType=VARCHAR},
+      account_type = #{record.accountType,jdbcType=VARCHAR},
       money_type = #{record.moneyType,jdbcType=VARCHAR},
       leverage = #{record.leverage,jdbcType=INTEGER},
       advance_depost = #{record.advanceDepost,jdbcType=DOUBLE},
@@ -237,6 +270,8 @@
       money_resource = #{record.moneyResource,jdbcType=VARCHAR},
       risk_awareness = #{record.riskAwareness,jdbcType=VARCHAR},
       user_state = #{record.userState,jdbcType=INTEGER},
+      user_group = #{record.userGroup,jdbcType=VARCHAR},
+      token = #{record.token,jdbcType=VARCHAR},
       create_time = #{record.createTime,jdbcType=TIMESTAMP},
       update_time = #{record.updateTime,jdbcType=TIMESTAMP},
       del_flag = #{record.delFlag,jdbcType=INTEGER}

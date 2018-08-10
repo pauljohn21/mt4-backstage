@@ -12,6 +12,8 @@ public class Admin {
 
     private String pwd;
 
+    private String token;
+
     @Column(name = "create_time")
     private Date createTime;
 
@@ -55,6 +57,20 @@ public class Admin {
      */
     public void setPwd(String pwd) {
         this.pwd = pwd;
+    }
+
+    /**
+     * @return token
+     */
+    public String getToken() {
+        return token;
+    }
+
+    /**
+     * @param token
+     */
+    public void setToken(String token) {
+        this.token = token;
     }
 
     /**
