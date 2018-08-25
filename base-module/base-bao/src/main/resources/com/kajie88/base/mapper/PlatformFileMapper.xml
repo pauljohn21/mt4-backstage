@@ -45,38 +45,6 @@
       </foreach>
     </where>
   </sql>
-  <sql id="Update_By_Example_Where_Clause" >
-    <!--
-      WARNING - @mbg.generated
-    -->
-    <where >
-      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
-        <if test="criteria.valid" >
-          <trim prefix="(" suffix=")" prefixOverrides="and" >
-            <foreach collection="criteria.criteria" item="criterion" >
-              <choose >
-                <when test="criterion.noValue" >
-                  and ${criterion.condition}
-                </when>
-                <when test="criterion.singleValue" >
-                  and ${criterion.condition} #{criterion.value}
-                </when>
-                <when test="criterion.betweenValue" >
-                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
-                </when>
-                <when test="criterion.listValue" >
-                  and ${criterion.condition}
-                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
-                    #{listItem}
-                  </foreach>
-                </when>
-              </choose>
-            </foreach>
-          </trim>
-        </if>
-      </foreach>
-    </where>
-  </sql>
   <sql id="Base_Column_List" >
     <!--
       WARNING - @mbg.generated
@@ -91,6 +59,7 @@
     <if test="distinct" >
       distinct
     </if>
+    'false' as QUERYID,
     <include refid="Base_Column_List" />
     from t_file
     <if test="_parameter != null" >
@@ -100,15 +69,6 @@
       order by ${orderByClause}
     </if>
   </select>
-  <delete id="deleteByExample" parameterType="com.kajie88.base.po.PlatformFileExample" >
-    <!--
-      WARNING - @mbg.generated
-    -->
-    delete from t_file
-    <if test="_parameter != null" >
-      <include refid="Example_Where_Clause" />
-    </if>
-  </delete>
   <select id="countByExample" parameterType="com.kajie88.base.po.PlatformFileExample" resultType="java.lang.Integer" >
     <!--
       WARNING - @mbg.generated
@@ -118,52 +78,4 @@
       <include refid="Example_Where_Clause" />
     </if>
   </select>
-  <update id="updateByExampleSelective" parameterType="map" >
-    <!--
-      WARNING - @mbg.generated
-    -->
-    update t_file
-    <set >
-      <if test="record.id != null" >
-        id = #{record.id,jdbcType=VARCHAR},
-      </if>
-      <if test="record.userId != null" >
-        user_id = #{record.userId,jdbcType=INTEGER},
-      </if>
-      <if test="record.fileType != null" >
-        file_type = #{record.fileType,jdbcType=VARCHAR},
-      </if>
-      <if test="record.filePath != null" >
-        file_path = #{record.filePath,jdbcType=VARCHAR},
-      </if>
-      <if test="record.fileClass != null" >
-        file_class = #{record.fileClass,jdbcType=VARCHAR},
-      </if>
-      <if test="record.fileDescribe != null" >
-        file_describe = #{record.fileDescribe,jdbcType=VARCHAR},
-      </if>
-      <if test="record.createTime != null" >
-        create_time = #{record.createTime,jdbcType=TIMESTAMP},
-      </if>
-    </set>
-    <if test="_parameter != null" >
-      <include refid="Update_By_Example_Where_Clause" />
-    </if>
-  </update>
-  <update id="updateByExample" parameterType="map" >
-    <!--
-      WARNING - @mbg.generated
-    -->
-    update t_file
-    set id = #{record.id,jdbcType=VARCHAR},
-      user_id = #{record.userId,jdbcType=INTEGER},
-      file_type = #{record.fileType,jdbcType=VARCHAR},
-      file_path = #{record.filePath,jdbcType=VARCHAR},
-      file_class = #{record.fileClass,jdbcType=VARCHAR},
-      file_describe = #{record.fileDescribe,jdbcType=VARCHAR},
-      create_time = #{record.createTime,jdbcType=TIMESTAMP}
-    <if test="_parameter != null" >
-      <include refid="Update_By_Example_Where_Clause" />
-    </if>
-  </update>
 </mapper>

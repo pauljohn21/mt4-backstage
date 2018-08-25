@@ -10,10 +10,16 @@ public class UserInfo {
 
     private String name;
 
+    /**
+     * mt4账号
+     */
     private String account;
 
     private String pwd;
 
+    /**
+     * 身份证号
+     */
     @Column(name = "identity_card")
     private String identityCard;
 
@@ -150,6 +156,15 @@ public class UserInfo {
     @Column(name = "del_flag")
     private Integer delFlag;
 
+    @Column(name = "user_card_up")
+    private String userCardUp;
+
+    @Column(name = "user_card_back")
+    private String userCardBack;
+
+    @Column(name = "bank_card_up")
+    private String bankCardUp;
+
     /**
      * @return id
      */
@@ -179,14 +194,18 @@ public class UserInfo {
     }
 
     /**
-     * @return account
+     * 获取mt4账号
+     *
+     * @return account - mt4账号
      */
     public String getAccount() {
         return account;
     }
 
     /**
-     * @param account
+     * 设置mt4账号
+     *
+     * @param account mt4账号
      */
     public void setAccount(String account) {
         this.account = account;
@@ -207,14 +226,18 @@ public class UserInfo {
     }
 
     /**
-     * @return identity_card
+     * 获取身份证号
+     *
+     * @return identity_card - 身份证号
      */
     public String getIdentityCard() {
         return identityCard;
     }
 
     /**
-     * @param identityCard
+     * 设置身份证号
+     *
+     * @param identityCard 身份证号
      */
     public void setIdentityCard(String identityCard) {
         this.identityCard = identityCard;
@@ -646,5 +669,47 @@ public class UserInfo {
      */
     public void setDelFlag(Integer delFlag) {
         this.delFlag = delFlag;
+    }
+
+    /**
+     * @return user_card_up
+     */
+    public String getUserCardUp() {
+        return userCardUp;
+    }
+
+    /**
+     * @param userCardUp
+     */
+    public void setUserCardUp(String userCardUp) {
+        this.userCardUp = userCardUp;
+    }
+
+    /**
+     * @return user_card_back
+     */
+    public String getUserCardBack() {
+        return userCardBack;
+    }
+
+    /**
+     * @param userCardBack
+     */
+    public void setUserCardBack(String userCardBack) {
+        this.userCardBack = userCardBack;
+    }
+
+    /**
+     * @return bank_card_up
+     */
+    public String getBankCardUp() {
+        return bankCardUp;
+    }
+
+    /**
+     * @param bankCardUp
+     */
+    public void setBankCardUp(String bankCardUp) {
+        this.bankCardUp = bankCardUp;
     }
 }

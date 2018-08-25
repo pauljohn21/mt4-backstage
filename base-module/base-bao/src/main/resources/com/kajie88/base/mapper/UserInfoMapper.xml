@@ -35,44 +35,20 @@
     <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
     <result column="del_flag" property="delFlag" jdbcType="INTEGER" />
   </resultMap>
+  <resultMap id="ResultMapWithBLOBs" type="com.kajie88.base.po.UserInfo" extends="BaseResultMap" >
+    <!--
+      WARNING - @mbg.generated
+    -->
+    <result column="user_card_up" property="userCardUp" jdbcType="LONGVARCHAR" />
+    <result column="user_card_back" property="userCardBack" jdbcType="LONGVARCHAR" />
+    <result column="bank_card_up" property="bankCardUp" jdbcType="LONGVARCHAR" />
+  </resultMap>
   <sql id="Example_Where_Clause" >
     <!--
       WARNING - @mbg.generated
     -->
     <where >
       <foreach collection="oredCriteria" item="criteria" separator="or" >
-        <if test="criteria.valid" >
-          <trim prefix="(" suffix=")" prefixOverrides="and" >
-            <foreach collection="criteria.criteria" item="criterion" >
-              <choose >
-                <when test="criterion.noValue" >
-                  and ${criterion.condition}
-                </when>
-                <when test="criterion.singleValue" >
-                  and ${criterion.condition} #{criterion.value}
-                </when>
-                <when test="criterion.betweenValue" >
-                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
-                </when>
-                <when test="criterion.listValue" >
-                  and ${criterion.condition}
-                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
-                    #{listItem}
-                  </foreach>
-                </when>
-              </choose>
-            </foreach>
-          </trim>
-        </if>
-      </foreach>
-    </where>
-  </sql>
-  <sql id="Update_By_Example_Where_Clause" >
-    <!--
-      WARNING - @mbg.generated
-    -->
-    <where >
-      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
         <if test="criteria.valid" >
           <trim prefix="(" suffix=")" prefixOverrides="and" >
             <foreach collection="criteria.criteria" item="criterion" >
@@ -108,6 +84,32 @@
     job_experience, education_level, annual_income, sum_money, money_resource, risk_awareness, 
     user_state, user_group, token, create_time, update_time, del_flag
   </sql>
+  <sql id="Blob_Column_List" >
+    <!--
+      WARNING - @mbg.generated
+    -->
+    user_card_up, user_card_back, bank_card_up
+  </sql>
+  <select id="selectByExampleWithBLOBs" resultMap="ResultMapWithBLOBs" parameterType="com.kajie88.base.po.UserInfoExample" >
+    <!--
+      WARNING - @mbg.generated
+    -->
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    'false' as QUERYID,
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from t_user_info
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
   <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.kajie88.base.po.UserInfoExample" >
     <!--
       WARNING - @mbg.generated
@@ -116,6 +118,7 @@
     <if test="distinct" >
       distinct
     </if>
+    'false' as QUERYID,
     <include refid="Base_Column_List" />
     from t_user_info
     <if test="_parameter != null" >
@@ -125,15 +128,6 @@
       order by ${orderByClause}
     </if>
   </select>
-  <delete id="deleteByExample" parameterType="com.kajie88.base.po.UserInfoExample" >
-    <!--
-      WARNING - @mbg.generated
-    -->
-    delete from t_user_info
-    <if test="_parameter != null" >
-      <include refid="Example_Where_Clause" />
-    </if>
-  </delete>
   <select id="countByExample" parameterType="com.kajie88.base.po.UserInfoExample" resultType="java.lang.Integer" >
     <!--
       WARNING - @mbg.generated
@@ -143,140 +137,4 @@
       <include refid="Example_Where_Clause" />
     </if>
   </select>
-  <update id="updateByExampleSelective" parameterType="map" >
-    <!--
-      WARNING - @mbg.generated
-    -->
-    update t_user_info
-    <set >
-      <if test="record.id != null" >
-        id = #{record.id,jdbcType=INTEGER},
-      </if>
-      <if test="record.name != null" >
-        name = #{record.name,jdbcType=VARCHAR},
-      </if>
-      <if test="record.account != null" >
-        account = #{record.account,jdbcType=VARCHAR},
-      </if>
-      <if test="record.pwd != null" >
-        pwd = #{record.pwd,jdbcType=VARCHAR},
-      </if>
-      <if test="record.identityCard != null" >
-        identity_card = #{record.identityCard,jdbcType=VARCHAR},
-      </if>
-      <if test="record.phone != null" >
-        phone = #{record.phone,jdbcType=VARCHAR},
-      </if>
-      <if test="record.email != null" >
-        email = #{record.email,jdbcType=VARCHAR},
-      </if>
-      <if test="record.accountType != null" >
-        account_type = #{record.accountType,jdbcType=VARCHAR},
-      </if>
-      <if test="record.moneyType != null" >
-        money_type = #{record.moneyType,jdbcType=VARCHAR},
-      </if>
-      <if test="record.leverage != null" >
-        leverage = #{record.leverage,jdbcType=INTEGER},
-      </if>
-      <if test="record.advanceDepost != null" >
-        advance_depost = #{record.advanceDepost,jdbcType=DOUBLE},
-      </if>
-      <if test="record.residentialCountry != null" >
-        residential_country = #{record.residentialCountry,jdbcType=VARCHAR},
-      </if>
-      <if test="record.address != null" >
-        address = #{record.address,jdbcType=VARCHAR},
-      </if>
-      <if test="record.postcode != null" >
-        postcode = #{record.postcode,jdbcType=VARCHAR},
-      </if>
-      <if test="record.city != null" >
-        city = #{record.city,jdbcType=VARCHAR},
-      </if>
-      <if test="record.birthday != null" >
-        birthday = #{record.birthday,jdbcType=DATE},
-      </if>
-      <if test="record.jobState != null" >
-        job_state = #{record.jobState,jdbcType=VARCHAR},
-      </if>
-      <if test="record.jobExperience != null" >
-        job_experience = #{record.jobExperience,jdbcType=VARCHAR},
-      </if>
-      <if test="record.educationLevel != null" >
-        education_level = #{record.educationLevel,jdbcType=VARCHAR},
-      </if>
-      <if test="record.annualIncome != null" >
-        annual_income = #{record.annualIncome,jdbcType=VARCHAR},
-      </if>
-      <if test="record.sumMoney != null" >
-        sum_money = #{record.sumMoney,jdbcType=VARCHAR},
-      </if>
-      <if test="record.moneyResource != null" >
-        money_resource = #{record.moneyResource,jdbcType=VARCHAR},
-      </if>
-      <if test="record.riskAwareness != null" >
-        risk_awareness = #{record.riskAwareness,jdbcType=VARCHAR},
-      </if>
-      <if test="record.userState != null" >
-        user_state = #{record.userState,jdbcType=INTEGER},
-      </if>
-      <if test="record.userGroup != null" >
-        user_group = #{record.userGroup,jdbcType=VARCHAR},
-      </if>
-      <if test="record.token != null" >
-        token = #{record.token,jdbcType=VARCHAR},
-      </if>
-      <if test="record.createTime != null" >
-        create_time = #{record.createTime,jdbcType=TIMESTAMP},
-      </if>
-      <if test="record.updateTime != null" >
-        update_time = #{record.updateTime,jdbcType=TIMESTAMP},
-      </if>
-      <if test="record.delFlag != null" >
-        del_flag = #{record.delFlag,jdbcType=INTEGER},
-      </if>
-    </set>
-    <if test="_parameter != null" >
-      <include refid="Update_By_Example_Where_Clause" />
-    </if>
-  </update>
-  <update id="updateByExample" parameterType="map" >
-    <!--
-      WARNING - @mbg.generated
-    -->
-    update t_user_info
-    set id = #{record.id,jdbcType=INTEGER},
-      name = #{record.name,jdbcType=VARCHAR},
-      account = #{record.account,jdbcType=VARCHAR},
-      pwd = #{record.pwd,jdbcType=VARCHAR},
-      identity_card = #{record.identityCard,jdbcType=VARCHAR},
-      phone = #{record.phone,jdbcType=VARCHAR},
-      email = #{record.email,jdbcType=VARCHAR},
-      account_type = #{record.accountType,jdbcType=VARCHAR},
-      money_type = #{record.moneyType,jdbcType=VARCHAR},
-      leverage = #{record.leverage,jdbcType=INTEGER},
-      advance_depost = #{record.advanceDepost,jdbcType=DOUBLE},
-      residential_country = #{record.residentialCountry,jdbcType=VARCHAR},
-      address = #{record.address,jdbcType=VARCHAR},
-      postcode = #{record.postcode,jdbcType=VARCHAR},
-      city = #{record.city,jdbcType=VARCHAR},
-      birthday = #{record.birthday,jdbcType=DATE},
-      job_state = #{record.jobState,jdbcType=VARCHAR},
-      job_experience = #{record.jobExperience,jdbcType=VARCHAR},
-      education_level = #{record.educationLevel,jdbcType=VARCHAR},
-      annual_income = #{record.annualIncome,jdbcType=VARCHAR},
-      sum_money = #{record.sumMoney,jdbcType=VARCHAR},
-      money_resource = #{record.moneyResource,jdbcType=VARCHAR},
-      risk_awareness = #{record.riskAwareness,jdbcType=VARCHAR},
-      user_state = #{record.userState,jdbcType=INTEGER},
-      user_group = #{record.userGroup,jdbcType=VARCHAR},
-      token = #{record.token,jdbcType=VARCHAR},
-      create_time = #{record.createTime,jdbcType=TIMESTAMP},
-      update_time = #{record.updateTime,jdbcType=TIMESTAMP},
-      del_flag = #{record.delFlag,jdbcType=INTEGER}
-    <if test="_parameter != null" >
-      <include refid="Update_By_Example_Where_Clause" />
-    </if>
-  </update>
 </mapper>

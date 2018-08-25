@@ -45,7 +45,8 @@ public class MyWebAppConfigurer extends WebMvcConfigurationSupport {
                 SerializerFeature.WriteNullStringAsEmpty,//将字符串类型字段的空值输出为空字符串 ""
                 SerializerFeature.WriteNullNumberAsZero,//将数值类型字段的空值输出为0
                 SerializerFeature.WriteNullBooleanAsFalse,//将Boolean类型字段的空值输出为false
-                SerializerFeature.WriteDateUseDateFormat//全局修改日期格式 yyyy-MM-dd
+                SerializerFeature.WriteDateUseDateFormat,//全局修改日期格式 yyyy-MM-dd
+                SerializerFeature.WriteNonStringValueAsString
         );
         //日期格式化
 //    fastJsonConfig.setDateFormat("yyyy-MM-dd HH:mm:ss");

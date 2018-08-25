@@ -29,7 +29,7 @@ public class UserInfoServiceImpl implements UserInfoService {
     @Override
     public List<UserInfoDomain> getDomainList(UserInfoDomain domain) {
         Page<Object> pages = PageHelper.startPage(domain.getPageInfo().getCurrentPage(), domain.getPageInfo().getPageSize());
-//        //1.第一步，声明返回
+        //1.第一步，声明返回
         List<UserInfoDomain> resultDomains = new ArrayList();
         //2.第二步，判断查询条件,不仅要根据domain中的特殊查询定义，且要把UserInfo的字段判断（如domain中有特殊定义字段的查询方式，则根据domain中的来）
         UserInfoExample example = new UserInfoExample();
@@ -40,6 +40,9 @@ public class UserInfoServiceImpl implements UserInfoService {
         }
         if(!StringUtil.isEmptyForTrim(domain.getName())){
             criteria.andNameLike("%"+domain.getName()+"%");
+        }
+        if(!StringUtil.isEmptyForTrim(domain.getAccount())){
+            criteria.andAccountEqualTo(domain.getAccount());
         }
         if (domain.getCreateTimeSortType() != null) {
             example.setOrderByClause("create_time " + domain.getCreateTimeSortType());
@@ -93,7 +96,7 @@ public class UserInfoServiceImpl implements UserInfoService {
     }
 
     @Override
-    public void deleteDomian(int id) {
+    public void deleteDomain(int id) {
         UserInfoDomain delInfo = new UserInfoDomain();
         delInfo.setId(id);
         delInfo.setDelFlag(1);
