@@ -33,6 +33,9 @@ public class BankInfoServiceImpl implements BankInfoService {
         if(domain.getChannelId()!=null){
             criteria.andChannelIdEqualTo(domain.getChannelId());
         }
+        if(domain.getStatus()!=null){
+            criteria.andStatusEqualTo(domain.getStatus());
+        }
 //        if(!StringUtil.isEmptyForTrim(domain.getTitle())){
 //            criteria.andNameLike("%"+domain.getTitle()+"%");
 //        }

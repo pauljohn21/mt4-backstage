@@ -47,9 +47,10 @@ public class ChannelController {
         ChannelDomain channelDomain = new ChannelDomain();
         channelDomain.setId(Integer.valueOf(reqDTO.getParam().get("id")));
         ChannelDomain resultDomain = channelService.getDomainByQuery(channelDomain);
-//        BankInfoDomain queryDomain = new BankInfoDomain();
-//        queryDomain.setChannelId(resultDomain.getId());
-//        resultDomain.setBankInfoList(bankInfoService.getDomainList(queryDomain));
+        BankInfoDomain queryDomain = new BankInfoDomain();
+        queryDomain.setChannelId(resultDomain.getId());
+        queryDomain.setStatus(1);
+        resultDomain.setBankInfoList(bankInfoService.getDomainList(queryDomain));
         return new BaseRespDTO().success("channelDomain",resultDomain).result();
     }
     @RequestMapping("disposeChannel")

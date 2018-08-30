@@ -3,6 +3,7 @@ package com.kajie88.order.service.Impl;
 import com.github.pagehelper.Page;
 import com.github.pagehelper.PageHelper;
 import com.kajie88.base.dao.MoneyInRecordMapper;
+import com.kajie88.base.enums.common.SqlSortType;
 import com.kajie88.base.enums.error.CommonError;
 import com.kajie88.base.exception.CommonException;
 import com.kajie88.base.po.MoneyInRecord;
@@ -89,9 +90,10 @@ public class MoneyInRecordServiceImpl implements MoneyInRecordService {
         String newUserId = String.join("",UUID.randomUUID().toString().split("-"));
         domain.setCreateTime(new Date());
         mapper.insertSelective(domain);
-        domain.setCreateTime(null);
-        this.getDomainByQuery(domain);
-        return this.getDomainByQuery(domain).getId();
+        MoneyInRecordDomain showIdDomain = new MoneyInRecordDomain();
+        showIdDomain.setCreateTimeSortType(SqlSortType.DESC);
+        this.getDomainByQuery(showIdDomain);
+        return this.getDomainByQuery(showIdDomain).getId();
     }
 
     @Override
