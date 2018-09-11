@@ -28,6 +28,7 @@ public class ChannelController {
     public Map<String,Object> getNoticeList(@RequestBody BaseReqDTO<Map<String,String>> reqDTO){
         ChannelDomain channelDomain = new ChannelDomain();
         channelDomain.setCreateTimeSortType(SqlSortType.DESC);
+        channelDomain.setStatus(reqDTO.getParam().get("status"));
         List<ChannelDomain> channelList = channelService.getDomainList(channelDomain);
         channelList.forEach(channelInfo->{
             BankInfoDomain queryDomain = new BankInfoDomain();

@@ -7,8 +7,10 @@ import com.kajie88.base.enums.error.CommonError;
 import com.kajie88.base.exception.CommonException;
 import com.kajie88.base.utils.OrderUtil;
 import com.kajie88.base.utils.StringUtil;
+import com.kajie88.order.domain.DooutRecordDomain;
 import com.kajie88.order.domain.MoneyInRecordDomain;
 import com.kajie88.order.domain.MoneyOutRecordDomain;
+import com.kajie88.order.service.DooutRecordService;
 import com.kajie88.order.service.MoneyInRecordService;
 import com.kajie88.order.service.MoneyOutRecordService;
 import com.kajie88.system.domain.ChannelDomain;
@@ -21,6 +23,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
@@ -36,6 +39,8 @@ public class OrderController {
     public UserInfoService userInfoService;
     @Autowired
     public ChannelService channelService;
+    @Autowired
+    public DooutRecordService dooutRecordService;
 
     @RequestMapping("getMoneyInList")
     public Map<String,Object> getMoneyInList(@RequestBody BasePageInfoReqDTO<Map<String,String>> reqDTO) throws ParseException {
@@ -207,5 +212,53 @@ public class OrderController {
 
         moneyOutRecordService.insertDomain(queryMoneyDomain);
         return new BaseRespDTO().success().result();
+    }
+
+    @RequestMapping("insertOutCheck")
+    public Map<String,Object> insertOutCheck(@RequestBody BasePageInfoReqDTO<Map<String,Object>> reqDTO){
+        String name = (String)reqDTO.getParam().get("name");
+        String bankCardNo = (String)reqDTO.getParam().get("bankCardNo");
+        if(reqDTO.getParam().get("money")==null){
+            throw new CommonException(CommonError.SYSTEM_ERROR,"出金金额不能为空");
+        }
+        Double money = Double.valueOf((String)reqDTO.getParam().get("money"));
+        String email = (String)reqDTO.getParam().get("email");
+        String bankType = (String)reqDTO.getParam().get("bankType");
+        String phone = (String)reqDTO.getParam().get("phone");
+        String phoneCode = (String)reqDTO.getParam().get("phoneCode");
+
+        if(StringUtil.isEmptyForTrim(bankCardNo)){
+            throw new CommonException(CommonError.SYSTEM_ERROR,"银行账号不能为空");
+        }
+        if(money<0){
+            throw new CommonException(CommonError.SYSTEM_ERROR,"请检查出金金额");
+        }
+        if(StringUtil.isEmptyForTrim(bankType)){
+            throw new CommonException(CommonError.SYSTEM_ERROR,"请检查出金银行");
+        }
+        //生成订单号
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMddHHmmssS");
+        String newOrderId = "payout"+sdf.format(new Date());
+        DooutRecordDomain dooutRecordDomain = new DooutRecordDomain();
+        dooutRecordDomain.setOrderId(newOrderId);
+        dooutRecordDomain.setName(name);
+        dooutRecordDomain.setBankCardNo(bankCardNo);
+        dooutRecordDomain.setMoney(money);
+        dooutRecordDomain.setBankType(bankType);
+        dooutRecordDomain.setEmail(email);
+        dooutRecordService.insertDomain(dooutRecordDomain);
+
+        return new BaseRespDTO().success().result();
+    }
+
+
+    @RequestMapping("getOutCheckList")
+    public Map<String,Object> getOutCheckList(@RequestBody BasePageInfoReqDTO<Map<String,String>> reqDTO){
+        DooutRecordDomain queryDomain = new DooutRecordDomain();
+        queryDomain.setPageInfo(reqDTO.getPage());
+//      userInfoDomain.setName(reqDTO.getParam().get("likeName"));
+        queryDomain.setCreateTimeSortType(SqlSortType.DESC);
+        List<DooutRecordDomain> resultList = dooutRecordService.getDomainList(queryDomain);
+        return new BaseRespDTO().page(queryDomain.getPageInfo()).success("outCheckList",resultList).result();
     }
 }

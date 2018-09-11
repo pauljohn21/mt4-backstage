@@ -55,6 +55,17 @@
 		</table>
 
 
+		<table schema="" tableName="t_doout_record" domainObjectName="DooutRecord" modelType="flat"
+			   enableCountByExample="true" enableUpdateByExample="false"
+			   enableDeleteByExample="false" enableSelectByExample="true"
+			   selectByExampleQueryId="false">
+
+			<!--useActualColumnNames 如果设置为true,那么MBG会使用从数据库元数据获取的列名作为生成的实体对象的属性。 如果为false(默认值)，MGB将会尝试将返回的名称转换为驼峰形式。 -->
+			<property name="useActualColumnNames" value="false" />
+			<generatedKey column="complaintId" sqlStatement="mysql"
+						  identity="false" type="pre"/>
+		</table>
+
 
 		<table schema="" tableName="t_file" domainObjectName="PlatformFile" modelType="flat"
 			   enableCountByExample="true" enableUpdateByExample="false"

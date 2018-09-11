@@ -68,6 +68,9 @@ public class UserController {
 
         UserInfoDomain newUserInfo = new UserInfoDomain();
         newUserInfo.setName(reqDTO.getParam().get("name"));
+
+        System.out.println("--------------------------->姓名是："+reqDTO.getParam().get("name"));
+
         newUserInfo.setIdentityCard(reqDTO.getParam().get("identityCard"));
         newUserInfo.setPhone(reqDTO.getParam().get("phone"));
         newUserInfo.setEmail(reqDTO.getParam().get("email"));

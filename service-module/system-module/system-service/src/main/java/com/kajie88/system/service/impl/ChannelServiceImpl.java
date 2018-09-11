@@ -33,6 +33,9 @@ public class ChannelServiceImpl implements ChannelService {
         if (domain.getId()!=null) {
             criteria.andIdEqualTo(domain.getId());
         }
+        if(domain.getStatus()!=null){
+            criteria.andStatusEqualTo(domain.getStatus());
+        }
 //        if(!StringUtil.isEmptyForTrim(domain.getTitle())){
 //            criteria.andNameLike("%"+domain.getTitle()+"%");
 //        }
