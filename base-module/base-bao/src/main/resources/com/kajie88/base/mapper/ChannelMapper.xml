@@ -7,6 +7,7 @@
     -->
     <id column="id" property="id" jdbcType="INTEGER" />
     <result column="name" property="name" jdbcType="VARCHAR" />
+    <result column="payType" property="paytype" jdbcType="VARCHAR" />
     <result column="rank" property="rank" jdbcType="INTEGER" />
     <result column="pay_min" property="payMin" jdbcType="DOUBLE" />
     <result column="pay_max" property="payMax" jdbcType="DOUBLE" />
@@ -50,7 +51,7 @@
     <!--
       WARNING - @mbg.generated
     -->
-    id, name, rank, pay_min, pay_max, pay_limit, status, del_flag
+    id, name, payType, rank, pay_min, pay_max, pay_limit, status, del_flag
   </sql>
   <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.kajie88.base.po.ChannelExample" >
     <!--

@@ -234,6 +234,76 @@ public class ChannelExample {
             return (Criteria) this;
         }
 
+        public Criteria andPaytypeIsNull() {
+            addCriterion("payType is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andPaytypeIsNotNull() {
+            addCriterion("payType is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andPaytypeEqualTo(String value) {
+            addCriterion("payType =", value, "paytype");
+            return (Criteria) this;
+        }
+
+        public Criteria andPaytypeNotEqualTo(String value) {
+            addCriterion("payType <>", value, "paytype");
+            return (Criteria) this;
+        }
+
+        public Criteria andPaytypeGreaterThan(String value) {
+            addCriterion("payType >", value, "paytype");
+            return (Criteria) this;
+        }
+
+        public Criteria andPaytypeGreaterThanOrEqualTo(String value) {
+            addCriterion("payType >=", value, "paytype");
+            return (Criteria) this;
+        }
+
+        public Criteria andPaytypeLessThan(String value) {
+            addCriterion("payType <", value, "paytype");
+            return (Criteria) this;
+        }
+
+        public Criteria andPaytypeLessThanOrEqualTo(String value) {
+            addCriterion("payType <=", value, "paytype");
+            return (Criteria) this;
+        }
+
+        public Criteria andPaytypeLike(String value) {
+            addCriterion("payType like", value, "paytype");
+            return (Criteria) this;
+        }
+
+        public Criteria andPaytypeNotLike(String value) {
+            addCriterion("payType not like", value, "paytype");
+            return (Criteria) this;
+        }
+
+        public Criteria andPaytypeIn(List<String> values) {
+            addCriterion("payType in", values, "paytype");
+            return (Criteria) this;
+        }
+
+        public Criteria andPaytypeNotIn(List<String> values) {
+            addCriterion("payType not in", values, "paytype");
+            return (Criteria) this;
+        }
+
+        public Criteria andPaytypeBetween(String value1, String value2) {
+            addCriterion("payType between", value1, value2, "paytype");
+            return (Criteria) this;
+        }
+
+        public Criteria andPaytypeNotBetween(String value1, String value2) {
+            addCriterion("payType not between", value1, value2, "paytype");
+            return (Criteria) this;
+        }
+
         public Criteria andRankIsNull() {
             addCriterion("rank is null");
             return (Criteria) this;

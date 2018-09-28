@@ -63,6 +63,7 @@ public class ChannelController {
         String payMin = reqDTO.getParam().get("payMin");
         String payMax = reqDTO.getParam().get("payMax");
         String payLimit = reqDTO.getParam().get("payLimit");
+        String paytype = reqDTO.getParam().get("paytype");
 
         ChannelDomain channelDomain = new ChannelDomain();
 
@@ -72,6 +73,7 @@ public class ChannelController {
         channelDomain.setPayMin(Double.valueOf(payMin));
         channelDomain.setPayMax(Double.valueOf(payMax));
         channelDomain.setPayLimit(Double.valueOf(payLimit));
+        channelDomain.setPaytype(paytype);
         if(StringUtil.isEmptyForTrim(id)){
             channelService.insertDomain(channelDomain);
         }else {

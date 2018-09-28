@@ -13,6 +13,12 @@ public class Channel {
     private String name;
 
     /**
+     * funToPay,aoyou,caiHuiTong
+     */
+    @Column(name = "payType")
+    private String paytype;
+
+    /**
      * 排序
      */
     private Integer rank;
@@ -76,6 +82,24 @@ public class Channel {
      */
     public void setName(String name) {
         this.name = name;
+    }
+
+    /**
+     * 获取funToPay,aoyou,caiHuiTong
+     *
+     * @return payType - funToPay,aoyou,caiHuiTong
+     */
+    public String getPaytype() {
+        return paytype;
+    }
+
+    /**
+     * 设置funToPay,aoyou,caiHuiTong
+     *
+     * @param paytype funToPay,aoyou,caiHuiTong
+     */
+    public void setPaytype(String paytype) {
+        this.paytype = paytype;
     }
 
     /**
