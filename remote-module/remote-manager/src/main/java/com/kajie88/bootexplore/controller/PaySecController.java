@@ -45,7 +45,7 @@ public class PaySecController {
     @RequestMapping("getPaySecToken")
     public Map<String, Object> getPaySecToken(@RequestBody BaseReqDTO<Map<String, String>> reqDTO) {
         String bankCode = reqDTO.getParam().get("bankCode");
-        String cartId = reqDTO.getParam().get("cartId");
+        String cartId = getCartid()+reqDTO.getParam().get("cartId");
         String orderAmount = reqDTO.getParam().get("orderAmount")+".00";
 
 
@@ -81,11 +81,14 @@ public class PaySecController {
             body.put("cartId", cartId);
             body.put("orderTime", getCartid());
             body.put("currency", currency);
-
+            System.out.println("请求参数--------------》");
+            System.out.println(JSONObject.toJSONString(param));
             String result = doPost("https://payment.allpay.site/api/transfer/v1/payIn/requestToken", JSONObject.toJSONString(param));
             JSONObject jsonObject = JSONObject.parseObject(result);
             if(jsonObject.getJSONObject("header").getString("status").equals("SUCCESS")){
                 String token = jsonObject.getJSONObject("body").getString("token");
+                System.out.println("请求返回token--------------》");
+                System.out.println(JSONObject.toJSONString(jsonObject));
                 return new BaseRespDTO().success("token",token).result();
             }else {
                 String errorMessage = jsonObject.getJSONObject("header").getString("statusMessage");

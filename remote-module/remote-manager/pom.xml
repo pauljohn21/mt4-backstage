@@ -40,15 +40,37 @@
                     <mainClass>com.kajie88.BootexploreApplication</mainClass>
                     <fork>true</fork>
                 </configuration>
-
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-dependency-plugin</artifactId>
+                <version>2.10</version>
+                <executions>
+                    <execution>
+                        <id>copy-dependencies</id>
+                        <phase>compile</phase>
+                        <goals>
+                            <goal>copy-dependencies</goal>
+                        </goals>
+                        <configuration>
+                            <outputDirectory>${project.build.directory}/${project.build.finalName}/WEB-INF/lib</outputDirectory>
+                            <includeScope>system</includeScope>
+                        </configuration>
+                    </execution>
+                </executions>
             </plugin>
         </plugins>
-
     </build>
     <dependencies>
-        
 
 
+        <dependency>
+            <groupId>com.kajie88</groupId>
+            <artifactId>jbcrypt</artifactId>
+            <version>0.0.1-SNAPSHOT</version>
+            <scope>system</scope>
+            <systemPath>${basedir}/lib/jbcrypt-0.4.jar</systemPath>
+        </dependency>
         <dependency>
             <groupId>com.kajie88</groupId>
             <artifactId>util-excel</artifactId>
