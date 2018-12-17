@@ -1,5 +1,6 @@
 package com.kajie88.bootexplore.controller;
 
+import com.kajie88.base.dto.PageInfo;
 import com.kajie88.base.dto.req.BasePageInfoReqDTO;
 import com.kajie88.base.dto.resp.BaseRespDTO;
 import com.kajie88.base.enums.common.SqlSortType;
@@ -151,6 +152,21 @@ public class OrderController {
         queryMoneyDomain.setChannelId(Integer.valueOf(channelId));
         queryMoneyDomain.setUserName(name);
         queryMoneyDomain.setMoney(inMoney);
+
+        //查询最后一次添加记录单moneyRank 1 2 3 轮回
+        MoneyInRecordDomain mird = new MoneyInRecordDomain();
+        PageInfo pi = new PageInfo();
+        pi.setPageSize(1);
+        pi.setCurrentPage(1);
+        mird.setPageInfo(pi);
+        mird.setCreateTimeSortType(SqlSortType.DESC);
+        List<MoneyInRecordDomain> domainList = moneyInRecordService.getDomainList(mird);
+        if(domainList.size()==0||domainList.get(0).getMoneyRank()==3){
+            queryMoneyDomain.setMoneyRank(1);
+        }else {
+            queryMoneyDomain.setMoneyRank(domainList.get(0).getMoneyRank()+1);
+        }
+
         queryMoneyDomain.setId(moneyInRecordService.insertDomain(queryMoneyDomain));;
         return new BaseRespDTO().success("orderInfo",queryMoneyDomain).result();
     }
@@ -260,5 +276,16 @@ public class OrderController {
         queryDomain.setCreateTimeSortType(SqlSortType.DESC);
         List<DooutRecordDomain> resultList = dooutRecordService.getDomainList(queryDomain);
         return new BaseRespDTO().page(queryDomain.getPageInfo()).success("outCheckList",resultList).result();
+    }
+    @RequestMapping("getMoneyRankLast")
+    public Map<String,Object> getMoneyRankLast(@RequestBody BasePageInfoReqDTO<Map<String,String>> reqDTO) throws ParseException {
+        MoneyInRecordDomain mird = new MoneyInRecordDomain();
+        PageInfo pi = new PageInfo();
+        pi.setPageSize(1);
+        pi.setCurrentPage(1);
+        mird.setPageInfo(pi);
+        mird.setCreateTimeSortType(SqlSortType.DESC);
+        List<MoneyInRecordDomain> domainList = moneyInRecordService.getDomainList(mird);
+        return new BaseRespDTO().success("lastRank",domainList.get(0)==null?0:domainList.get(0).getMoneyRank()).result();
     }
 }

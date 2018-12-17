@@ -58,6 +58,12 @@ public class MoneyInRecord {
     private Integer delFlag;
 
     /**
+     * 付款等级分为3挡 1 700左右 2 1500左右 3 3000左
+     */
+    @Column(name = "money_rank")
+    private Integer moneyRank;
+
+    /**
      * @return id
      */
     public Integer getId() {
@@ -227,5 +233,23 @@ public class MoneyInRecord {
      */
     public void setDelFlag(Integer delFlag) {
         this.delFlag = delFlag;
+    }
+
+    /**
+     * 获取付款等级分为3挡 1 700左右 2 1500左右 3 3000左
+     *
+     * @return money_rank - 付款等级分为3挡 1 700左右 2 1500左右 3 3000左
+     */
+    public Integer getMoneyRank() {
+        return moneyRank;
+    }
+
+    /**
+     * 设置付款等级分为3挡 1 700左右 2 1500左右 3 3000左
+     *
+     * @param moneyRank 付款等级分为3挡 1 700左右 2 1500左右 3 3000左
+     */
+    public void setMoneyRank(Integer moneyRank) {
+        this.moneyRank = moneyRank;
     }
 }

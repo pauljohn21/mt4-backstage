@@ -734,6 +734,66 @@ public class MoneyInRecordExample {
             addCriterion("del_flag not between", value1, value2, "delFlag");
             return (Criteria) this;
         }
+
+        public Criteria andMoneyRankIsNull() {
+            addCriterion("money_rank is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andMoneyRankIsNotNull() {
+            addCriterion("money_rank is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andMoneyRankEqualTo(Integer value) {
+            addCriterion("money_rank =", value, "moneyRank");
+            return (Criteria) this;
+        }
+
+        public Criteria andMoneyRankNotEqualTo(Integer value) {
+            addCriterion("money_rank <>", value, "moneyRank");
+            return (Criteria) this;
+        }
+
+        public Criteria andMoneyRankGreaterThan(Integer value) {
+            addCriterion("money_rank >", value, "moneyRank");
+            return (Criteria) this;
+        }
+
+        public Criteria andMoneyRankGreaterThanOrEqualTo(Integer value) {
+            addCriterion("money_rank >=", value, "moneyRank");
+            return (Criteria) this;
+        }
+
+        public Criteria andMoneyRankLessThan(Integer value) {
+            addCriterion("money_rank <", value, "moneyRank");
+            return (Criteria) this;
+        }
+
+        public Criteria andMoneyRankLessThanOrEqualTo(Integer value) {
+            addCriterion("money_rank <=", value, "moneyRank");
+            return (Criteria) this;
+        }
+
+        public Criteria andMoneyRankIn(List<Integer> values) {
+            addCriterion("money_rank in", values, "moneyRank");
+            return (Criteria) this;
+        }
+
+        public Criteria andMoneyRankNotIn(List<Integer> values) {
+            addCriterion("money_rank not in", values, "moneyRank");
+            return (Criteria) this;
+        }
+
+        public Criteria andMoneyRankBetween(Integer value1, Integer value2) {
+            addCriterion("money_rank between", value1, value2, "moneyRank");
+            return (Criteria) this;
+        }
+
+        public Criteria andMoneyRankNotBetween(Integer value1, Integer value2) {
+            addCriterion("money_rank not between", value1, value2, "moneyRank");
+            return (Criteria) this;
+        }
     }
 
     public static class Criteria extends GeneratedCriteria {

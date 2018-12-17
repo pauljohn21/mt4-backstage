@@ -38,6 +38,9 @@ public class MoneyInRecordServiceImpl implements MoneyInRecordService {
         if (domain.getId()!=null) {
             criteria.andIdEqualTo(domain.getId());
         }
+        if(domain.getUserId()!=null){
+            criteria.andUserIdEqualTo(domain.getUserId());
+        }
         if(domain.getCreateTime()!=null){
             SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
             String formatDate = sdf.format(new Date());
