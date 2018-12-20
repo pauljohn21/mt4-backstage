@@ -963,6 +963,76 @@ public class BankInfoExample {
             addCriterion("del_flag not between", value1, value2, "delFlag");
             return (Criteria) this;
         }
+
+        public Criteria andBankUrlIsNull() {
+            addCriterion("bank_url is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andBankUrlIsNotNull() {
+            addCriterion("bank_url is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andBankUrlEqualTo(String value) {
+            addCriterion("bank_url =", value, "bankUrl");
+            return (Criteria) this;
+        }
+
+        public Criteria andBankUrlNotEqualTo(String value) {
+            addCriterion("bank_url <>", value, "bankUrl");
+            return (Criteria) this;
+        }
+
+        public Criteria andBankUrlGreaterThan(String value) {
+            addCriterion("bank_url >", value, "bankUrl");
+            return (Criteria) this;
+        }
+
+        public Criteria andBankUrlGreaterThanOrEqualTo(String value) {
+            addCriterion("bank_url >=", value, "bankUrl");
+            return (Criteria) this;
+        }
+
+        public Criteria andBankUrlLessThan(String value) {
+            addCriterion("bank_url <", value, "bankUrl");
+            return (Criteria) this;
+        }
+
+        public Criteria andBankUrlLessThanOrEqualTo(String value) {
+            addCriterion("bank_url <=", value, "bankUrl");
+            return (Criteria) this;
+        }
+
+        public Criteria andBankUrlLike(String value) {
+            addCriterion("bank_url like", value, "bankUrl");
+            return (Criteria) this;
+        }
+
+        public Criteria andBankUrlNotLike(String value) {
+            addCriterion("bank_url not like", value, "bankUrl");
+            return (Criteria) this;
+        }
+
+        public Criteria andBankUrlIn(List<String> values) {
+            addCriterion("bank_url in", values, "bankUrl");
+            return (Criteria) this;
+        }
+
+        public Criteria andBankUrlNotIn(List<String> values) {
+            addCriterion("bank_url not in", values, "bankUrl");
+            return (Criteria) this;
+        }
+
+        public Criteria andBankUrlBetween(String value1, String value2) {
+            addCriterion("bank_url between", value1, value2, "bankUrl");
+            return (Criteria) this;
+        }
+
+        public Criteria andBankUrlNotBetween(String value1, String value2) {
+            addCriterion("bank_url not between", value1, value2, "bankUrl");
+            return (Criteria) this;
+        }
     }
 
     public static class Criteria extends GeneratedCriteria {

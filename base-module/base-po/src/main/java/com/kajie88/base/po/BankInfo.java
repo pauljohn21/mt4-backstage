@@ -52,6 +52,9 @@ public class BankInfo {
     @Column(name = "del_flag")
     private Integer delFlag;
 
+    @Column(name = "bank_url")
+    private String bankUrl;
+
     @Column(name = "pay_img_fir")
     private String payImgFir;
 
@@ -257,6 +260,20 @@ public class BankInfo {
      */
     public void setDelFlag(Integer delFlag) {
         this.delFlag = delFlag;
+    }
+
+    /**
+     * @return bank_url
+     */
+    public String getBankUrl() {
+        return bankUrl;
+    }
+
+    /**
+     * @param bankUrl
+     */
+    public void setBankUrl(String bankUrl) {
+        this.bankUrl = bankUrl;
     }
 
     /**

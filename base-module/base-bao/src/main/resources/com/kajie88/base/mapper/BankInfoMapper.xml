@@ -18,8 +18,9 @@
     <result column="rpn_pay_to_bank" property="rpnPayToBank" jdbcType="VARCHAR" />
     <result column="rank" property="rank" jdbcType="INTEGER" />
     <result column="del_flag" property="delFlag" jdbcType="INTEGER" />
+    <result column="bank_url" property="bankUrl" jdbcType="VARCHAR" />
   </resultMap>
-  <resultMap id="ResultMapWithBLOBs" type="com.kajie88.base.po.BankInfo" extends="BaseResultMap" >
+  <resultMap id="ResultMapWidisposeBankInfothBLOBs" type="com.kajie88.base.po.BankInfo" extends="BaseResultMap" >
     <!--
       WARNING - @mbg.generated
     -->
@@ -64,7 +65,7 @@
       WARNING - @mbg.generated
     -->
     id, name, channel_id, status, pay_type, rpn_pay_name, rpn_pay_no, rpn_pay_key, rpn_pay_version, 
-    rpn_pay_bank_id, rpn_pay_to_bank, rank, del_flag
+    rpn_pay_bank_id, rpn_pay_to_bank, rank, del_flag, bank_url
   </sql>
   <sql id="Blob_Column_List" >
     <!--
